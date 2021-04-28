@@ -64,74 +64,32 @@ SIMAGANG
                 <h2>Lowongan</h2>
                 <p>Lowongan lain yang dapat kamu pilih</p>
             </div>
+            @foreach ($low as $data)
             <div class="justify-content-between ">
                 <div class="row m-sm-5  card-list border">
                     <div class="col-sm-3">
-                        <a href="detail-lowongan.html">
+                        <a href="{{ route('detail.show', $data->id) }}">
                             <img src="assets/img/sim-vertical-black.png" class="img-fluid" alt="">
                         </a>
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0">
-                        <h3>Back End Developer</h3>
+                        <h3>{{ $data->nama }}</h3>
                         <ul class="list-unstyled ">
                             <span>
-                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/building.svg') }}" alt="" style="height: 20px;width: 20px;" class=""></span><span class="ml-3">PT. Lotech</span></li>
+                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/building.svg') }}" alt="" style="height: 20px;width: 20px;" class=""></span><span class="ml-3">{{ $data->mitra['nama'] }}</span></li>
                             </span>
                             <span>
-                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/placeholder.svg') }}" alt="" style="height: 20px;width: 20px;"></span><span class="ml-3">Jakarta, Indonesia</span></li>
+                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/placeholder.svg') }}" alt="" style="height: 20px;width: 20px;"></span><span class="ml-3">{{ $data->lokasi}}</span></li>
                             </span>
                             <span>
-                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/filter.svg') }}" alt="" style="height: 20px;width: 20px;"></span><span class="ml-3">Web Developer</span></li>
+                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/filter.svg') }}" alt="" style="height: 20px;width: 20px;"></span><span class="ml-3">{{ $data->kategori['nama'] }}</span></li>
                             </span>
                         </ul>
                     </div>
-                </div>
 
-                <div class="row m-lg-5  card-list border">
-                    <div class="col-sm-3">
-                        <a href="detail-lowongan.html">
-                            <img src="assets/img/sim-vertical-black.png" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-6 pt-4 pt-lg-0">
-                        <h3>Back End Developer</h3>
-                        <ul class="list-unstyled ">
-                            <span>
-                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/building.svg') }}" alt="" style="height: 20px;width: 20px;" class=""></span><span class="ml-3">PT. Lotech</span></li>
-                            </span>
-                            <span>
-                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/placeholder.svg') }}" alt="" style="height: 20px;width: 20px;"></span><span class="ml-3">Jakarta, Indonesia</span></li>
-                            </span>
-                            <span>
-                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/filter.svg') }}" alt="" style="height: 20px;width: 20px;"></span><span class="ml-3">Web Developer</span></li>
-                            </span>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row m-lg-5 icon-box card-list border ">
-                    <div class="col-sm-3">
-                        <a href="detail-lowongan.html">
-                            <img src="assets/img/sim-vertical-black.png" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-6 pt-4 pt-lg-0">
-                        <h3>Back End Developer</h3>
-                        <ul class="list-unstyled ">
-                            <span>
-                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/building.svg') }}" alt="" style="height: 20px;width: 20px;" class=""></span><span class="ml-3">PT. Lotech</span></li>
-                            </span>
-                            <span>
-                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/placeholder.svg') }}" alt="" style="height: 20px;width: 20px;"></span><span class="ml-3">Jakarta, Indonesia</span></li>
-                            </span>
-                            <span>
-                                <li class="d-flex align-items-start m-3"><span><img src="{{ asset('assets/img/filter.svg') }}" alt="" style="height: 20px;width: 20px;"></span><span class="ml-3">Web Developer</span></li>
-                            </span>
-                        </ul>
-                    </div>
                 </div>
             </div>
-
+            @endforeach
         </div>
     </section><!-- End About Section -->
 </main><!-- End #main -->

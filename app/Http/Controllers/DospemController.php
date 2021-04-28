@@ -11,6 +11,12 @@ class DospemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function dospemHome()
+    {
+        return view('dosen.home');
+    }
+
     public function index()
     {
         //

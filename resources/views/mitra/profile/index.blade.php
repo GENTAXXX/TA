@@ -1,7 +1,7 @@
-@extends('depart.layout')
+@extends('mitra.layout')
 
 @section('title')
-Profile Departemen
+Profile Mitra
 @endsection
 
 @section('konteng')
@@ -33,32 +33,38 @@ Profile Departemen
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle" src="{{ asset('$depart->foto') }}" alt="User profile picture">
+                                <img class="profile-user-img img-fluid img-circle" src="{{ asset('$mitra->foto') }}" alt="User profile picture">
                             </div>
 
-                            <h3 class="profile-username text-center">{{ $depart->nama }}</h3>
+                            <h3 class="profile-username text-center">{{ $mitra->nama }}</h3>
 
                             <p class="text-muted text-center">Software Engineer</p>
                             <strong><i class="fas fa-book mr-1"></i> Alamat</strong>
 
-                            <p class="text-muted">{{ $depart->alamat }}</p>
+                            <p class="text-muted">{{ $mitra->alamat }}</p>
 
                             <hr>
 
                             <strong><i class="fas fa-mail-bulk mr-1"></i> Telepon</strong>
 
-                            <p class="text-muted">{{ $depart->telepon }}</p>
+                            <p class="text-muted">{{ $mitra->telepon }}</p>
 
                             <hr>
 
-                            <strong><i class="fas fa-mail-bulk mr-1"></i> NIDN</strong>
+                            <strong><i class="fas fa-mail-bulk mr-1"></i> Fax</strong>
 
-                            <p class="text-muted">{{ $depart->NIDN }}</p>
+                            <p class="text-muted">{{ $mitra->fax }}</p>
 
+                            <hr>
+
+                            <strong><i class="fas fa-pencil-alt mr-1"></i> Kabupaten</strong>
+
+                            <p class="text-muted"> {{ $mitra->kabupaten['nama'] }}
+                            </p>
                         </div>
                         <div class="form-group row">
                             <div class="offset-sm-5 ">
-                                <a class="btn btn-danger" href="{{ route('profile.edit', $depart->id) }}">
+                                <a class="btn btn-danger" href="{{ route('profile.edit', $mitra->id) }}">
                                     Ubah
                                 </a>
                             </div>

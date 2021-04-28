@@ -11,6 +11,10 @@ class SpvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function supervisorHome(){
+        return view('spv.home');
+    }
+
     public function index()
     {
         //

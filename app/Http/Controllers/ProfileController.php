@@ -36,11 +36,11 @@ class ProfileController extends Controller
                 break;
             case '3':
                 $dosen = Dosen::where("user_id", $idUserLogin)->first();
-                return view('dosen.index', compact('dosen'));
+                return view('dosen.profile.index', compact('dosen'));
                 break;
             case '4':
                 $spv = Supervisor::where("user_id", $idUserLogin)->first();
-                return view('spv.index', compact('spv'));
+                return view('spv.profile.index', compact('spv'));
                 break;
             case '5':
                 $mhs = Mahasiswa::where("user_id", $idUserLogin)->first();
@@ -94,20 +94,20 @@ class ProfileController extends Controller
         switch ($user->role_id) {
             case '1':
                 $depart = Departemen::where("user_id", $idUserLogin)->first();
-                return view('depart.profile', compact('depart'));
+                return view('depart.profile.edit', compact('depart'));
                 break;
             case '2':
                 $mitra = Mitra::where("user_id", $idUserLogin)->first();
                 $kabupatens = Kabupaten::all();
-                return view('mitra.profile', compact('mitra', 'kabupaten'));
+                return view('mitra.profile.edit', compact('mitra', 'kabupatens'));
                 break;
             case '3':
                 $dosen = Dosen::where("user_id", $idUserLogin)->first();
-                return view('dosen.profile', compact('dosen'));
+                return view('dosen.profile.edit', compact('dosen'));
                 break;
             case '4':
                 $spv = Supervisor::where("user_id", $idUserLogin)->first();
-                return view('spv.profile', compact('spv'));
+                return view('spv.profile.edit', compact('spv'));
                 break;
             case '5':
                 $mhs = Mahasiswa::where("user_id", $idUserLogin)->first();
@@ -143,9 +143,8 @@ class ProfileController extends Controller
 
                 $imageName = time() . '.' . $request->foto->extension();
                 $request->foto->move(public_path('images'), $imageName);
-
                 $depart->update($request->all());
-                return redirect()->route('depart.home');
+                return redirect()->route('profile.index');
                 break;
             case '2':
                 $mitra = Mitra::where("user_id", $idUserLogin)->first();
@@ -160,20 +159,36 @@ class ProfileController extends Controller
 
                 $imageName = time() . '.' . $request->foto->extension();
                 $request->foto->move(public_path('images'), $imageName);
-
                 $mitra->update($request->all());
-
                 return redirect()->route('profile.index');
                 break;
             case '3':
                 $dosen = Dosen::where("user_id", $idUserLogin)->first();
+                $request->validate([
+                    'nama' => 'required',
+                    'telepon' => 'required',
+                    'NIP' => 'required',
+                    'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+
+                $imageName = time() . '.' . $request->foto->extension();
+                $request->foto->move(public_path('images'), $imageName);
                 $dosen->update($request->all());
-                return redirect()->route('dospem.home');
+                return redirect()->route('profile.index');
                 break;
             case '4':
                 $spv = Supervisor::where("user_id", $idUserLogin)->first();
+                $request->validate([
+                    'nama' => 'required',
+                    'telepon' => 'required',
+                    'no_pegawai' => 'required',
+                    'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+
+                $imageName = time() . '.' . $request->foto->extension();
+                $request->foto->move(public_path('images'), $imageName);
                 $spv->update($request->all());
-                return redirect()->route('supervisor.home');
+                return redirect()->route('profile.index');
                 break;
             case '5':
                 $mhs = Mahasiswa::where("user_id", $idUserLogin)->first();
@@ -191,9 +206,8 @@ class ProfileController extends Controller
 
                 $imageName = time() . '.' . $request->foto->extension();
                 $request->foto->move(public_path('images'), $imageName);
-
                 $mhs->update($request->all());
-                return redirect()->route('mahasiswa.home');
+                return redirect()->route('profile.index');
                 break;
         }
     }

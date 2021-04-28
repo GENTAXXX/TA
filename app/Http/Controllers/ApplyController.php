@@ -19,6 +19,7 @@ class ApplyController extends Controller
         $mhs = Mahasiswa::where('user_id', $idUserLogin)->first();
         return view('lowongan.apply', compact('mhs'));
     }
+    
     public function index()
     {
         $low = Lowongan::all();
