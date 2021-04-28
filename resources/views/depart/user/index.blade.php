@@ -67,7 +67,8 @@ Daftar User
                                     <td class="text-center">{{ $user->name }}</td>
                                     <td class="text-center">{{ $user->email }}</td>
                                     <td class="text-center">{{ $user->role['role'] }}</td>
-                                    <td class="text-center"><span>
+                                    <td class="text-center">
+                                        <span>
                                             <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')

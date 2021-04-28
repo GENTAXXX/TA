@@ -4,8 +4,11 @@ use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MhsController;
 use App\Http\Controllers\DepartController;
 use App\Http\Controllers\MitraController;
+use App\Http\Controllers\DospemController;
+use App\Http\Controllers\SpvController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ApplyController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,9 +23,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LowonganController::class, 'AllLowongan']);
+
+Route::resource('detail', ApplyController::class);
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('profile', ProfileController::class);
@@ -35,11 +39,6 @@ Route::group(['middleware' => 'is_depart'], function () {
     Route::get('depart/home', [DepartController::class, 'departHome'])->name('depart.home');
     //CRUD Users
     Route::resource('users', UserController::class);
-    // Route::get('depart/users', [UserController::class, 'index']);
-    // Route::get('depart/users/{id}', [UserController::class, 'show']);
-    // Route::post('depart/users', [UserController::class, 'store']);
-    // Route::put('depart/users/{id}', [UserController::class, 'update']);
-    // Route::delete('depart/users/{id}', [UserController::class, 'destroy']);
     //List Mahasiswa
     Route::get('depart/mahasiswa', [DepartController::class, 'listMhs']);
     Route::get('depart/mahasiswa/{id}', [DepartController::class, 'show']);
@@ -51,18 +50,6 @@ Route::group(['middleware' => 'is_mitra'], function () {
     Route::get('mitra/home', [MitraController::class, 'mitraHome'])->name('mitra.home');
     //CRUD Lowongan
     Route::resource('lowongan', LowonganController::class);
-    // Route::get('mitra/lowongan', [LowonganController::class, 'index']);
-    // Route::get('mitra/lowongan/tambah', [LowonganController::class, 'create']);
-    // Route::get('mitra/lowongan/{id}', [LowonganController::class, 'show']);
-    // Route::post('mitra/lowongan', [LowonganController::class, 'store'])->name('lowongan.store');
-    // Route::put('mitra/lowongan/{id}', [LowonganController::class, 'update']);
-    // Route::delete('mitra/lowongan/{id}', [LowonganController::class, 'destroy']);
-    // Route::get('mitra/lowongan/tambah', [LowonganController::class, 'create'])->name('lowongan.create');
-    // Route::get('mitra/lowongan', [LowonganController::class, 'getLowonganById'])->name('lowongan.list');
-    // Route::post('mitra/lowongan', [LowonganController::class, 'store'])->name('lowongan.store');
-    // Route::get('mitra/lowongan/{id}', [LowonganController::class, 'show']);
-    // Route::put('mitra/lowongan/{id}', [LowonganController::class, 'update']);
-    // Route::delete('mitra/lowongan/{id}', [LowonganController::class, 'destroy']);
 });
 
 Route::group(['middleware' => 'is_dospem'], function () {
@@ -76,7 +63,7 @@ Route::group(['middleware' => 'is_supervisor'], function () {
 Route::group(['middleware' => 'is_mahasiswa'], function () {
     Route::get('mahasiswa/home', [MhsController::class, 'mahasiswaHome'])->name('mahasiswa.home');
     //Lowongan
-    Route::get('lowongan/apply', [LowonganController::class, 'getUserData']);
+    Route::get('apply', [ApplyController::class, 'apply'])->name('lowongan.apply');
 });
 
 Auth::routes();

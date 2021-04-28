@@ -15,6 +15,10 @@ class LowonganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function AllLowongan(){
+        $low = Lowongan::all();
+        return view('welcome', compact('low'));
+    }
     public function index()
     {
         $idUserLogin = Auth::id();
@@ -71,17 +75,7 @@ class LowonganController extends Controller
      */
     public function show(Lowongan $lowongan)
     {
-        $result = Lowongan::find($lowongan->id);
-
-        if ($result) {
-            $data['code'] = 200;
-            $data['result'] = $result;
-        } else {
-            $data['code'] = 500;
-            $data['result'] = 'Error';
-        }
-        return response()->json($data);
-        // return view('lowongan.show', compact('lowongan'));
+        return view('mitra.lowongan.detail', compact('lowongan'));
     }
 
     /**

@@ -16,10 +16,10 @@ class Lowongan extends Model
     ];
 
     public function kategori(){
-        return $this->belongsTo(Kategori::class);
+        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 
     public function mitra(){
-        return $this->belongsTo(Mitra::class);
+        return $this->belongsTo(Mitra::class, 'mitra_id');
     }
 }

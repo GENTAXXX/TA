@@ -33,7 +33,7 @@ Tambah Lowongan
             <section>
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Buat Lowongan</h3>
+                        <h3 class="card-title">Edit Lowongan</h3>
                     </div>
                     @if ($errors->any())
                     <div class="alert alert-danger">

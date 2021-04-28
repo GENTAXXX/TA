@@ -162,26 +162,26 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        dd($user->role_id);
         switch ($user->role_id) {
             case '1':
-                $depart = Departemen::where('user_id', $user->id)->get();
+                $depart = Departemen::where('user_id', $user->id);
                 $depart->delete();
                 break;
             case '2':
-                $mitra = Mitra::where('user_id', $user->id)->get();
+                $mitra = Mitra::where('user_id', $user->id);
                 $mitra->delete();
                 break;
             case '3':
-                $dospem = Dosen::where('user_id', $user->id)->get();
+                $dospem = Dosen::where('user_id', $user->id);
                 $dospem->delete();
                 break;
             case '4':
-                $spv = Supervisor::where('user_id', $user->id)->get();
+                $spv = Supervisor::where('user_id', $user->id);
                 $spv->delete();
                 break;
             case '5':
-                $mhs = Mahasiswa::where('user_id', $user->id)->get();
-                $mhs->delete();
+                $mhs = Mahasiswa::where('user_id', $user->id);
                 break;
         }
 
